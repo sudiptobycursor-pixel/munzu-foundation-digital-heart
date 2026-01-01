@@ -1,0 +1,212 @@
+import { useState } from "react";
+import { Layout } from "@/components/layout/Layout";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+const contactInfo = [
+  {
+    icon: MapPin,
+    title: "Our Address",
+    details: ["123 Foundation Street", "Mirpur-10, Dhaka 1216", "Bangladesh"],
+  },
+  {
+    icon: Phone,
+    title: "Phone Numbers",
+    details: ["+880 1234-567890", "+880 9876-543210"],
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    details: ["info@munzufoundation.org", "support@munzufoundation.org"],
+  },
+  {
+    icon: Clock,
+    title: "Office Hours",
+    details: ["Saturday - Thursday", "9:00 AM - 6:00 PM"],
+  },
+];
+
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message Sent! ✉️",
+      description: "Thank you for reaching out. We'll get back to you within 24 hours.",
+    });
+    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const openWhatsApp = () => {
+    window.open("https://wa.me/8801234567890", "_blank");
+  };
+
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="pt-32 pb-20 bg-primary relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
+        </div>
+        <div className="container-custom relative z-10 text-center text-primary-foreground">
+          <span className="inline-block px-4 py-2 bg-white/10 rounded-full text-sm font-medium mb-4 animate-fade-in-down">
+            Get In Touch
+          </span>
+          <h1 className="heading-display mb-6 animate-fade-in-up">
+            Contact <span className="text-accent">Us</span>
+          </h1>
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in-up delay-100">
+            Have questions or want to get involved? We'd love to hear from you.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="section-padding bg-background">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
+            <div className="card-elevated p-8 md:p-12">
+              <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
+                Send Us a Message
+              </h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="name">Your Name *</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+880 1XXX-XXXXXX"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="subject">Subject *</Label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="How can we help?"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="message">Message *</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us more..."
+                    rows={5}
+                    required
+                  />
+                </div>
+                <Button type="submit" variant="hero" size="lg" className="w-full">
+                  Send Message
+                  <Send className="w-4 h-4" />
+                </Button>
+              </form>
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="grid sm:grid-cols-2 gap-6">
+                {contactInfo.map((info, index) => (
+                  <div key={index} className="card-elevated p-6">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                      <info.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="font-serif font-semibold text-foreground mb-2">
+                      {info.title}
+                    </h4>
+                    {info.details.map((detail, i) => (
+                      <p key={i} className="text-muted-foreground text-sm">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              {/* WhatsApp Button */}
+              <button
+                onClick={openWhatsApp}
+                className="w-full card-elevated p-6 flex items-center gap-4 bg-[#25D366]/10 border-[#25D366]/20 hover:bg-[#25D366]/20 transition-colors group"
+              >
+                <div className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <MessageCircle className="w-7 h-7 text-white" />
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-foreground">Chat on WhatsApp</p>
+                  <p className="text-muted-foreground text-sm">Quick response within minutes</p>
+                </div>
+              </button>
+
+              {/* Map */}
+              <div className="rounded-2xl overflow-hidden shadow-lg h-64">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6289866848093!2d90.36833731498168!3d23.806921884568856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1a3cebabd21%3A0xde1a12fae3c0d0e0!2sMirpur-10!5e0!3m2!1sen!2sbd!4v1640000000000!5m2!1sen!2sbd"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default ContactPage;
