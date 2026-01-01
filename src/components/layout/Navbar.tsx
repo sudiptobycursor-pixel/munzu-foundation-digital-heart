@@ -1,22 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X, Heart, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Programs", path: "/programs" },
-  { name: "Projects", path: "/projects" },
-  { name: "Gallery", path: "/gallery" },
-  { name: "News", path: "/news" },
-  { name: "Contact", path: "/contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
+
+  const navLinks = [
+    { name: t.nav.home, path: "/" },
+    { name: t.nav.about, path: "/about" },
+    { name: t.nav.programs, path: "/programs" },
+    { name: t.nav.projects, path: "/projects" },
+    { name: t.nav.gallery, path: "/gallery" },
+    { name: t.nav.news, path: "/news" },
+    { name: t.nav.contact, path: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,10 @@ export const Navbar = () => {
   }, []);
 
   const isActive = (path: string) => location.pathname === path;
+
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "bn" : "en");
+  };
 
   return (
     <nav
@@ -48,7 +54,7 @@ export const Navbar = () => {
                 scrolled ? "text-foreground" : "text-white"
               }`}
             >
-              Munzu Foundation
+              {language === "bn" ? "মুনজু ফাউন্ডেশন" : "Munzu Foundation"}
             </span>
           </Link>
 
@@ -75,30 +81,56 @@ export const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={`flex items-center gap-2 px-3 py-2 rounded-full font-medium text-sm transition-all duration-300 ${
+                scrolled
+                  ? "bg-secondary text-foreground hover:bg-primary/10"
+                  : "bg-white/10 text-white hover:bg-white/20"
+              }`}
+            >
+              <Globe className="w-4 h-4" />
+              {language === "en" ? "বাং" : "EN"}
+            </button>
+
             <Link to="/volunteer">
               <Button
                 variant={scrolled ? "outline" : "heroOutline"}
                 size="sm"
               >
-                Volunteer
+                {t.nav.volunteer}
               </Button>
             </Link>
             <Link to="/donate">
               <Button variant="hero" size="sm">
-                Donate Now
+                {t.nav.donateNow}
               </Button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              scrolled ? "text-foreground" : "text-white"
-            }`}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={toggleLanguage}
+              className={`flex items-center gap-1 px-2 py-1 rounded-full font-medium text-xs ${
+                scrolled
+                  ? "bg-secondary text-foreground"
+                  : "bg-white/10 text-white"
+              }`}
+            >
+              <Globe className="w-3 h-3" />
+              {language === "en" ? "বাং" : "EN"}
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                scrolled ? "text-foreground" : "text-white"
+              }`}
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -125,12 +157,12 @@ export const Navbar = () => {
             <div className="pt-4 border-t border-border space-y-2">
               <Link to="/volunteer" onClick={() => setIsOpen(false)}>
                 <Button variant="outline" className="w-full">
-                  Volunteer
+                  {t.nav.volunteer}
                 </Button>
               </Link>
               <Link to="/donate" onClick={() => setIsOpen(false)}>
                 <Button variant="hero" className="w-full">
-                  Donate Now
+                  {t.nav.donateNow}
                 </Button>
               </Link>
             </div>

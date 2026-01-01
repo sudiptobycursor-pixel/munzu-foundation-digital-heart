@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Users, Home, HeartHandshake, Briefcase } from "lucide-react";
-
-const stats = [
-  { icon: Users, value: 15000, suffix: "+", label: "People Helped", color: "text-primary" },
-  { icon: Home, value: 50, suffix: "+", label: "Projects Completed", color: "text-accent" },
-  { icon: HeartHandshake, value: 200, suffix: "+", label: "Active Volunteers", color: "text-primary" },
-  { icon: Briefcase, value: 12, suffix: "", label: "Districts Covered", color: "text-accent" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const useCountUp = (end: number, duration: number = 2000, start: boolean = false) => {
   const [count, setCount] = useState(0);
@@ -32,6 +26,14 @@ const useCountUp = (end: number, duration: number = 2000, start: boolean = false
 export const ImpactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
+
+  const stats = [
+    { icon: Users, value: 15000, suffix: "+", label: t.impact.peopleHelped, color: "text-primary" },
+    { icon: Home, value: 50, suffix: "+", label: t.impact.projectsCompleted, color: "text-accent" },
+    { icon: HeartHandshake, value: 200, suffix: "+", label: t.impact.activeVolunteers, color: "text-primary" },
+    { icon: Briefcase, value: 12, suffix: "", label: t.impact.districtsCovered, color: "text-accent" },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,13 +63,13 @@ export const ImpactSection = () => {
       <div className="container-custom relative z-10">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-white/10 rounded-full text-primary-foreground text-sm font-medium mb-4">
-            Our Impact
+            {t.impact.badge}
           </span>
           <h2 className="heading-section text-primary-foreground">
-            Making a Real Difference
+            {t.impact.title}
           </h2>
           <p className="text-primary-foreground/80 max-w-2xl mx-auto">
-            Every number represents a life changed, a community strengthened, and hope restored.
+            {t.impact.subtitle}
           </p>
         </div>
 

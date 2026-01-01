@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Message {
   id: number;
@@ -8,35 +9,30 @@ interface Message {
   isBot: boolean;
 }
 
-const initialMessages: Message[] = [
-  {
-    id: 1,
-    text: "Hello! 👋 Welcome to Munzu Foundation. I'm here to help you learn about our programs, make donations, or become a volunteer. How can I assist you today?",
-    isBot: true,
-  },
-];
-
-const quickReplies = [
-  "How can I donate?",
-  "Tell me about programs",
-  "I want to volunteer",
-  "Contact information",
-];
-
-const botResponses: Record<string, string> = {
-  donate: "Thank you for your interest in donating! 💚 You can donate through bKash, Nagad, bank transfer, or PayPal. Visit our Donate page for more options. Every contribution, big or small, makes a difference in someone's life!",
-  programs: "We focus on 4 key areas: 📚 Educational Support - scholarships and school supplies, 🍲 Food Distribution - feeding families in need, 🏥 Medical Assistance - free health camps, and 👩‍👧 Women & Child Development - empowerment programs.",
-  volunteer: "We'd love to have you! 🙌 As a volunteer, you can teach, help at events, provide medical services, or offer professional skills. Visit our Volunteer page to register!",
-  contact: "📍 Address: 123 Foundation Street, Dhaka, Bangladesh\n📞 Phone: +880 1234 567 890\n✉️ Email: info@munzufoundation.org\n💬 WhatsApp: +880 1234 567 890",
-  default: "Thank you for your message! I can help you with information about donations, our programs, volunteering opportunities, or contact details. What would you like to know?",
-};
-
 export const AIChatbot = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMessages([
+      {
+        id: 1,
+        text: t.chatbot.welcome,
+        isBot: true,
+      },
+    ]);
+  }, [t]);
+
+  const quickReplies = [
+    t.chatbot.quickDonate,
+    t.chatbot.quickPrograms,
+    t.chatbot.quickVolunteer,
+    t.chatbot.quickContact,
+  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -48,19 +44,19 @@ export const AIChatbot = () => {
 
   const getBotResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
-    if (lowerMessage.includes("donate") || lowerMessage.includes("money") || lowerMessage.includes("contribution")) {
-      return botResponses.donate;
+    if (lowerMessage.includes("donate") || lowerMessage.includes("money") || lowerMessage.includes("contribution") || lowerMessage.includes("দান") || lowerMessage.includes("টাকা")) {
+      return t.chatbot.donate;
     }
-    if (lowerMessage.includes("program") || lowerMessage.includes("activities") || lowerMessage.includes("work")) {
-      return botResponses.programs;
+    if (lowerMessage.includes("program") || lowerMessage.includes("activities") || lowerMessage.includes("work") || lowerMessage.includes("কার্যক্রম") || lowerMessage.includes("প্রোগ্রাম")) {
+      return t.chatbot.programs;
     }
-    if (lowerMessage.includes("volunteer") || lowerMessage.includes("join") || lowerMessage.includes("help")) {
-      return botResponses.volunteer;
+    if (lowerMessage.includes("volunteer") || lowerMessage.includes("join") || lowerMessage.includes("help") || lowerMessage.includes("স্বেচ্ছাসেবক") || lowerMessage.includes("যোগ")) {
+      return t.chatbot.volunteerResponse;
     }
-    if (lowerMessage.includes("contact") || lowerMessage.includes("address") || lowerMessage.includes("phone") || lowerMessage.includes("email")) {
-      return botResponses.contact;
+    if (lowerMessage.includes("contact") || lowerMessage.includes("address") || lowerMessage.includes("phone") || lowerMessage.includes("email") || lowerMessage.includes("যোগাযোগ") || lowerMessage.includes("ঠিকানা")) {
+      return t.chatbot.contactInfo;
     }
-    return botResponses.default;
+    return t.chatbot.defaultResponse;
   };
 
   const handleSend = (text?: string) => {
@@ -116,8 +112,8 @@ export const AIChatbot = () => {
               <Bot className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-semibold">Munzu Assistant</h4>
-              <p className="text-xs text-primary-foreground/80">Always here to help</p>
+              <h4 className="font-semibold">{t.chatbot.title}</h4>
+              <p className="text-xs text-primary-foreground/80">{t.chatbot.subtitle}</p>
             </div>
           </div>
         </div>
@@ -186,7 +182,7 @@ export const AIChatbot = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Type your message..."
+              placeholder={t.chatbot.typePlaceholder}
               className="flex-1 px-4 py-2 bg-secondary rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
             />
             <Button

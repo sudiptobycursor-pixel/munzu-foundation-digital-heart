@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -22,33 +25,33 @@ export const HeroSection = () => {
           {/* Badge */}
           <div className="animate-fade-in-down">
             <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
-              🌱 Creating Hope, Changing Lives
+              {t.hero.badge}
             </span>
           </div>
 
           {/* Heading */}
           <h1 className="heading-display animate-fade-in-up delay-100" style={{ textShadow: "var(--text-shadow)" }}>
-            Empowering Communities,{" "}
-            <span className="text-accent">Building Futures</span>
+            {t.hero.title1}{" "}
+            <span className="text-accent">{t.hero.title2}</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto animate-fade-in-up delay-200">
-            Munzu Foundation is dedicated to creating sustainable change through education, healthcare, and community development programs across Bangladesh.
+            {t.hero.subtitle}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
             <Link to="/donate">
               <Button variant="hero" size="xl" className="group animate-pulse-glow">
-                Donate Now
+                {t.nav.donateNow}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link to="/about">
               <Button variant="heroOutline" size="xl" className="group">
                 <Play className="w-5 h-5" />
-                Watch Our Story
+                {t.hero.watchStory}
               </Button>
             </Link>
           </div>
@@ -56,10 +59,10 @@ export const HeroSection = () => {
           {/* Stats Preview */}
           <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up delay-400">
             {[
-              { value: "15K+", label: "Lives Impacted" },
-              { value: "50+", label: "Projects Completed" },
-              { value: "200+", label: "Volunteers" },
-              { value: "12", label: "Districts Reached" },
+              { value: "15K+", label: t.hero.livesImpacted },
+              { value: "50+", label: t.hero.projectsCompleted },
+              { value: "200+", label: t.hero.volunteers },
+              { value: "12", label: t.hero.districtsReached },
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <p className="text-3xl md:text-4xl font-bold text-accent mb-1">{stat.value}</p>
