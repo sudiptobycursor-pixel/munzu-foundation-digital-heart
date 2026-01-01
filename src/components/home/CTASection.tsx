@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const CTASection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="section-padding bg-secondary relative overflow-hidden">
       {/* Background Pattern */}
@@ -17,20 +20,20 @@ export const CTASection = () => {
             <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mb-6 mx-auto lg:mx-0">
               <Heart className="w-8 h-8 text-accent" />
             </div>
-            <h3 className="heading-section text-foreground">Make a Donation</h3>
+            <h3 className="heading-section text-foreground">{t.cta.donateTitle}</h3>
             <p className="text-muted-foreground mb-8">
-              Your generosity can transform lives. Every contribution, no matter the size, helps us continue our mission of creating lasting change in communities.
+              {t.cta.donateText}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/donate">
                 <Button variant="hero" size="lg" className="w-full sm:w-auto">
-                  Donate Now
+                  {t.nav.donateNow}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/donate">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  Learn How Your Gift Helps
+                  {t.cta.learnHow}
                 </Button>
               </Link>
             </div>
@@ -41,14 +44,14 @@ export const CTASection = () => {
             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 mx-auto lg:mx-0">
               <Users className="w-8 h-8" />
             </div>
-            <h3 className="heading-section">Join Our Team</h3>
+            <h3 className="heading-section">{t.cta.volunteerTitle}</h3>
             <p className="text-primary-foreground/80 mb-8">
-              Become a volunteer and be part of something bigger. Share your skills, time, and passion to help those in need and make a real difference.
+              {t.cta.volunteerText}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/volunteer">
                 <Button variant="gold" size="lg" className="w-full sm:w-auto">
-                  Become a Volunteer
+                  {t.cta.becomeVolunteer}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -58,7 +61,7 @@ export const CTASection = () => {
                   size="lg"
                   className="w-full sm:w-auto"
                 >
-                  Meet Our Team
+                  {t.cta.meetTeam}
                 </Button>
               </Link>
             </div>

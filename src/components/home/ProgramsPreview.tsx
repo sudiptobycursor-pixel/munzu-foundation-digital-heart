@@ -5,49 +5,52 @@ import educationImage from "@/assets/education-program.jpg";
 import foodImage from "@/assets/food-distribution.jpg";
 import medicalImage from "@/assets/medical-assistance.jpg";
 import womenImage from "@/assets/women-development.jpg";
-
-const programs = [
-  {
-    icon: GraduationCap,
-    title: "Educational Support",
-    description: "Providing scholarships, school supplies, and learning resources to underprivileged children.",
-    image: educationImage,
-    color: "bg-blue-500",
-  },
-  {
-    icon: Utensils,
-    title: "Food Distribution",
-    description: "Regular food drives and nutrition programs to combat hunger in vulnerable communities.",
-    image: foodImage,
-    color: "bg-orange-500",
-  },
-  {
-    icon: Stethoscope,
-    title: "Medical Assistance",
-    description: "Free health camps, medical supplies, and healthcare access for those in need.",
-    image: medicalImage,
-    color: "bg-red-500",
-  },
-  {
-    icon: Users,
-    title: "Women & Child Development",
-    description: "Skills training, empowerment programs, and support for women and children.",
-    image: womenImage,
-    color: "bg-purple-500",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ProgramsPreview = () => {
+  const { t } = useLanguage();
+
+  const programs = [
+    {
+      icon: GraduationCap,
+      title: t.programs.education,
+      description: t.programs.educationDesc,
+      image: educationImage,
+      color: "bg-blue-500",
+    },
+    {
+      icon: Utensils,
+      title: t.programs.food,
+      description: t.programs.foodDesc,
+      image: foodImage,
+      color: "bg-orange-500",
+    },
+    {
+      icon: Stethoscope,
+      title: t.programs.medical,
+      description: t.programs.medicalDesc,
+      image: medicalImage,
+      color: "bg-red-500",
+    },
+    {
+      icon: Users,
+      title: t.programs.women,
+      description: t.programs.womenDesc,
+      image: womenImage,
+      color: "bg-purple-500",
+    },
+  ];
+
   return (
     <section className="section-padding bg-background">
       <div className="container-custom">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-            What We Do
+            {t.programs.badge}
           </span>
-          <h2 className="heading-section text-foreground">Our Key Programs</h2>
+          <h2 className="heading-section text-foreground">{t.programs.title}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Through our focused initiatives, we address critical needs and create pathways to a better future.
+            {t.programs.subtitle}
           </p>
         </div>
 
@@ -76,7 +79,7 @@ export const ProgramsPreview = () => {
                 </h3>
                 <p className="text-muted-foreground mb-4">{program.description}</p>
                 <span className="inline-flex items-center text-primary font-medium group-hover:gap-2 transition-all">
-                  Learn More
+                  {t.programs.learnMore}
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
@@ -87,7 +90,7 @@ export const ProgramsPreview = () => {
         <div className="text-center mt-12">
           <Link to="/programs">
             <Button variant="outline" size="lg">
-              View All Programs
+              {t.programs.viewAll}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
