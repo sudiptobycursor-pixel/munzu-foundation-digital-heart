@@ -25,22 +25,22 @@ const ContactPage = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: t('contact.ourAddress'),
+      title: t.contact.ourAddress,
       details: ["123 Foundation Street", "Mirpur-10, Dhaka 1216", "Bangladesh"],
     },
     {
       icon: Phone,
-      title: t('contact.phoneNumbers'),
+      title: t.contact.phoneNumbers,
       details: ["+880 1234-567890", "+880 9876-543210"],
     },
     {
       icon: Mail,
-      title: t('contact.emailLabel'),
+      title: t.contact.emailLabel,
       details: ["info@munzufoundation.org", "support@munzufoundation.org"],
     },
     {
       icon: Clock,
-      title: t('contact.officeHours'),
+      title: t.contact.officeHours,
       details: ["Saturday - Thursday", "9:00 AM - 6:00 PM"],
     },
   ];
@@ -48,8 +48,8 @@ const ContactPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: t('contact.messageSent'),
-      description: t('contact.messageSentDesc'),
+      title: t.contact.messageSent,
+      description: t.contact.messageSentDesc,
     });
     setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
   };
@@ -64,29 +64,26 @@ const ContactPage = () => {
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('contact.badge')}
-        title={t('contact.title')}
-        titleHighlight={t('contact.titleHighlight')}
-        subtitle={t('contact.subtitle')}
+        badge={t.contact.badge}
+        title={t.contact.title}
+        titleHighlight={t.contact.titleHighlight}
+        subtitle={t.contact.subtitle}
         backgroundImage={heroContactImage}
       />
 
-      {/* Contact Section */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
             <ScrollReveal animation="fade-right">
               <div className="card-elevated p-8 md:p-12">
                 <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
-                  {t('contact.sendMessage')}
+                  {t.contact.sendMessage}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="name">{t('contact.yourName')} *</Label>
+                      <Label htmlFor="name">{t.contact.yourName} *</Label>
                       <Input
                         id="name"
                         name="name"
@@ -97,7 +94,7 @@ const ContactPage = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">{t('contact.email')} *</Label>
+                      <Label htmlFor="email">{t.contact.email} *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -111,7 +108,7 @@ const ContactPage = () => {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="phone">{t('contact.phone')}</Label>
+                      <Label htmlFor="phone">{t.contact.phone}</Label>
                       <Input
                         id="phone"
                         name="phone"
@@ -122,38 +119,37 @@ const ContactPage = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="subject">{t('contact.subject')} *</Label>
+                      <Label htmlFor="subject">{t.contact.subject} *</Label>
                       <Input
                         id="subject"
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        placeholder={t('contact.subjectPlaceholder')}
+                        placeholder={t.contact.subjectPlaceholder}
                         required
                       />
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="message">{t('contact.message')} *</Label>
+                    <Label htmlFor="message">{t.contact.message} *</Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder={t('contact.messagePlaceholder')}
+                      placeholder={t.contact.messagePlaceholder}
                       rows={5}
                       required
                     />
                   </div>
                   <Button type="submit" variant="hero" size="lg" className="w-full">
-                    {t('contact.send')}
+                    {t.contact.send}
                     <Send className="w-4 h-4" />
                   </Button>
                 </form>
               </div>
             </ScrollReveal>
 
-            {/* Contact Info */}
             <div className="space-y-8">
               <div className="grid sm:grid-cols-2 gap-6">
                 {contactInfo.map((info, index) => (
@@ -175,7 +171,6 @@ const ContactPage = () => {
                 ))}
               </div>
 
-              {/* WhatsApp Button */}
               <ScrollReveal animation="fade-up" delay={400}>
                 <button
                   onClick={openWhatsApp}
@@ -185,13 +180,12 @@ const ContactPage = () => {
                     <MessageCircle className="w-7 h-7 text-white" />
                   </div>
                   <div className="text-left">
-                    <p className="font-semibold text-foreground">{t('contact.chatWhatsApp')}</p>
-                    <p className="text-muted-foreground text-sm">{t('contact.quickResponse')}</p>
+                    <p className="font-semibold text-foreground">{t.contact.chatWhatsApp}</p>
+                    <p className="text-muted-foreground text-sm">{t.contact.quickResponse}</p>
                   </div>
                 </button>
               </ScrollReveal>
 
-              {/* Map */}
               <ScrollReveal animation="scale" delay={500}>
                 <div className="rounded-2xl overflow-hidden shadow-lg h-64">
                   <iframe

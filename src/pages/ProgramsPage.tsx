@@ -18,9 +18,9 @@ const ProgramsPage = () => {
     {
       id: "education",
       icon: GraduationCap,
-      title: t('programs.education'),
+      title: t.programs.education,
       subtitle: "Building Futures Through Knowledge",
-      description: t('programs.educationDesc'),
+      description: t.programs.educationDesc,
       image: educationImage,
       color: "bg-blue-500",
       features: [
@@ -35,9 +35,9 @@ const ProgramsPage = () => {
     {
       id: "food",
       icon: Utensils,
-      title: t('programs.food'),
+      title: t.programs.food,
       subtitle: "Nourishing Communities",
-      description: t('programs.foodDesc'),
+      description: t.programs.foodDesc,
       image: foodImage,
       color: "bg-orange-500",
       features: [
@@ -52,9 +52,9 @@ const ProgramsPage = () => {
     {
       id: "medical",
       icon: Stethoscope,
-      title: t('programs.medical'),
+      title: t.programs.medical,
       subtitle: "Healthcare for All",
-      description: t('programs.medicalDesc'),
+      description: t.programs.medicalDesc,
       image: medicalImage,
       color: "bg-red-500",
       features: [
@@ -69,9 +69,9 @@ const ProgramsPage = () => {
     {
       id: "women",
       icon: Users,
-      title: t('programs.women'),
+      title: t.programs.women,
       subtitle: "Empowering the Future",
-      description: t('programs.womenDesc'),
+      description: t.programs.womenDesc,
       image: womenImage,
       color: "bg-purple-500",
       features: [
@@ -87,17 +87,15 @@ const ProgramsPage = () => {
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('programs.badge')}
+        badge={t.programs.badge}
         title="Creating"
         titleHighlight="Impact"
         titleEnd="That Lasts"
-        subtitle={t('programs.subtitle')}
+        subtitle={t.programs.subtitle}
         backgroundImage={heroProgramsImage}
       />
 
-      {/* Programs List */}
       <section className="section-padding bg-background">
         <div className="container-custom space-y-24">
           {programs.map((program, index) => (
@@ -151,7 +149,7 @@ const ProgramsPage = () => {
                     </Link>
                     <Link to="/projects">
                       <Button variant="outline" size="lg">
-                        {t('about.viewProjects')}
+                        {t.about.viewProjects}
                       </Button>
                     </Link>
                   </div>
@@ -162,24 +160,23 @@ const ProgramsPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="section-padding bg-primary">
         <ScrollReveal>
           <div className="container-custom text-center text-primary-foreground">
-            <h2 className="heading-section mb-6">{t('common.readyToMakeDifference')}</h2>
+            <h2 className="heading-section mb-6">{t.common.readyToMakeDifference}</h2>
             <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-              {t('common.readyText')}
+              {t.common.readyText}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/donate">
                 <Button variant="gold" size="xl">
-                  {t('nav.donateNow')}
+                  {t.nav.donateNow}
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/volunteer">
                 <Button variant="heroOutline" size="xl">
-                  {t('cta.becomeVolunteer')}
+                  {t.cta.becomeVolunteer}
                 </Button>
               </Link>
             </div>

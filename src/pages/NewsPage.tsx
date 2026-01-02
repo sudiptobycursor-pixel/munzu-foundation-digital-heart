@@ -82,16 +82,14 @@ const NewsPage = () => {
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('news.badge')}
-        title={t('news.title')}
-        titleHighlight={t('news.titleHighlight')}
-        subtitle={t('news.subtitle')}
+        badge={t.news.badge}
+        title={t.news.title}
+        titleHighlight={t.news.titleHighlight}
+        subtitle={t.news.subtitle}
         backgroundImage={heroNewsImage}
       />
 
-      {/* Featured Articles */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
@@ -105,7 +103,7 @@ const NewsPage = () => {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4 px-3 py-1 bg-accent text-foreground rounded-full text-sm font-medium">
-                      {t('news.featured')}
+                      {t.news.featured}
                     </div>
                   </div>
                   <div className="p-6">
@@ -124,7 +122,7 @@ const NewsPage = () => {
                     </h2>
                     <p className="text-muted-foreground mb-4">{article.excerpt}</p>
                     <Link to={`/news/${article.id}`} className="inline-flex items-center text-primary font-medium group-hover:gap-2 transition-all">
-                      {t('news.readMore')}
+                      {t.news.readMore}
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -133,7 +131,6 @@ const NewsPage = () => {
             ))}
           </div>
 
-          {/* Regular Articles */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularArticles.map((article, index) => (
               <ScrollReveal key={article.id} animation="fade-up" delay={index * 100}>
@@ -160,7 +157,7 @@ const NewsPage = () => {
                     </h3>
                     <p className="text-muted-foreground text-sm line-clamp-2 mb-3">{article.excerpt}</p>
                     <Link to={`/news/${article.id}`} className="inline-flex items-center text-primary text-sm font-medium">
-                      {t('news.readMore')}
+                      {t.news.readMore}
                       <ArrowRight className="w-3 h-3 ml-1" />
                     </Link>
                   </div>
@@ -171,23 +168,22 @@ const NewsPage = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
       <section className="section-padding bg-secondary">
         <ScrollReveal>
           <div className="container-custom">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="heading-section text-foreground mb-6">{t('news.newsletterTitle')}</h2>
+              <h2 className="heading-section text-foreground mb-6">{t.news.newsletterTitle}</h2>
               <p className="text-muted-foreground mb-8">
-                {t('news.newsletterText')}
+                {t.news.newsletterText}
               </p>
               <form className="flex flex-col sm:flex-row gap-4">
                 <input
                   type="email"
-                  placeholder={t('news.enterEmail')}
+                  placeholder={t.news.enterEmail}
                   className="flex-1 px-5 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
                 />
                 <Button variant="hero" size="lg">
-                  {t('news.subscribe')}
+                  {t.news.subscribe}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </form>

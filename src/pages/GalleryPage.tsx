@@ -19,48 +19,45 @@ const GalleryPage = () => {
   const [selectedImage, setSelectedImage] = useState<typeof galleryItems[0] | null>(null);
 
   const categories = [
-    t('gallery.all'), 
-    t('gallery.education'), 
-    t('gallery.healthcare'), 
-    t('gallery.foodDistribution'), 
-    t('gallery.womenEmpowerment'), 
-    t('gallery.events')
+    t.gallery.all, 
+    t.gallery.education, 
+    t.gallery.healthcare, 
+    t.gallery.foodDistribution, 
+    t.gallery.womenEmpowerment, 
+    t.gallery.events
   ];
 
   const galleryItems = [
-    { id: 1, image: educationImage, category: t('gallery.education'), title: "Classroom Session" },
-    { id: 2, image: foodImage, category: t('gallery.foodDistribution'), title: "Weekly Food Drive" },
-    { id: 3, image: medicalImage, category: t('gallery.healthcare'), title: "Medical Camp" },
-    { id: 4, image: womenImage, category: t('gallery.womenEmpowerment'), title: "Skills Training" },
-    { id: 5, image: communityImage, category: t('gallery.events'), title: "Community Gathering" },
-    { id: 6, image: galleryEducationImage, category: t('gallery.education'), title: "Book Distribution" },
-    { id: 7, image: galleryChildrenImage, category: t('gallery.healthcare'), title: "Health Checkup" },
-    { id: 8, image: womenImage, category: t('gallery.womenEmpowerment'), title: "Sewing Workshop" },
-    { id: 9, image: foodImage, category: t('gallery.foodDistribution'), title: "Ramadan Program" },
-    { id: 10, image: communityImage, category: t('gallery.events'), title: "Volunteer Meet" },
-    { id: 11, image: galleryEducationImage, category: t('gallery.education'), title: "Digital Learning" },
-    { id: 12, image: medicalImage, category: t('gallery.healthcare'), title: "Vaccination Drive" },
+    { id: 1, image: educationImage, category: t.gallery.education, title: "Classroom Session" },
+    { id: 2, image: foodImage, category: t.gallery.foodDistribution, title: "Weekly Food Drive" },
+    { id: 3, image: medicalImage, category: t.gallery.healthcare, title: "Medical Camp" },
+    { id: 4, image: womenImage, category: t.gallery.womenEmpowerment, title: "Skills Training" },
+    { id: 5, image: communityImage, category: t.gallery.events, title: "Community Gathering" },
+    { id: 6, image: galleryEducationImage, category: t.gallery.education, title: "Book Distribution" },
+    { id: 7, image: galleryChildrenImage, category: t.gallery.healthcare, title: "Health Checkup" },
+    { id: 8, image: womenImage, category: t.gallery.womenEmpowerment, title: "Sewing Workshop" },
+    { id: 9, image: foodImage, category: t.gallery.foodDistribution, title: "Ramadan Program" },
+    { id: 10, image: communityImage, category: t.gallery.events, title: "Volunteer Meet" },
+    { id: 11, image: galleryEducationImage, category: t.gallery.education, title: "Digital Learning" },
+    { id: 12, image: medicalImage, category: t.gallery.healthcare, title: "Vaccination Drive" },
   ];
 
-  const filteredItems = activeCategory === t('gallery.all')
+  const filteredItems = activeCategory === t.gallery.all
     ? galleryItems
     : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('gallery.badge')}
-        title={t('gallery.title')}
-        titleHighlight={t('gallery.titleHighlight')}
-        subtitle={t('gallery.subtitle')}
+        badge={t.gallery.badge}
+        title={t.gallery.title}
+        titleHighlight={t.gallery.titleHighlight}
+        subtitle={t.gallery.subtitle}
         backgroundImage={heroGalleryImage}
       />
 
-      {/* Gallery */}
       <section className="section-padding bg-background">
         <div className="container-custom">
-          {/* Category Filter */}
           <ScrollReveal>
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {categories.map((category) => (
@@ -79,7 +76,6 @@ const GalleryPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* Gallery Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item, index) => (
               <ScrollReveal key={item.id} animation="scale" delay={index * 50}>
@@ -105,15 +101,14 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      {/* Video Section */}
       <section className="section-padding bg-secondary">
         <div className="container-custom">
           <ScrollReveal>
             <div className="text-center mb-12">
               <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                {t('gallery.videoBadge')}
+                {t.gallery.videoBadge}
               </span>
-              <h2 className="heading-section text-foreground">{t('gallery.videoTitle')}</h2>
+              <h2 className="heading-section text-foreground">{t.gallery.videoTitle}</h2>
             </div>
           </ScrollReveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -137,7 +132,6 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      {/* Lightbox */}
       {selectedImage && (
         <div
           className="fixed inset-0 z-50 bg-foreground/90 flex items-center justify-center p-4"

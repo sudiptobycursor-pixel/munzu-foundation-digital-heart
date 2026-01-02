@@ -31,39 +31,35 @@ const DonatePage = () => {
   ];
 
   const impactItems = [
-    { amount: "500", impact: t('donate.impact1') },
-    { amount: "1,000", impact: t('donate.impact2') },
-    { amount: "2,500", impact: t('donate.impact3') },
-    { amount: "5,000", impact: t('donate.impact4') },
-    { amount: "10,000", impact: t('donate.impact5') },
+    { amount: "500", impact: t.donate.impact1 },
+    { amount: "1,000", impact: t.donate.impact2 },
+    { amount: "2,500", impact: t.donate.impact3 },
+    { amount: "5,000", impact: t.donate.impact4 },
+    { amount: "10,000", impact: t.donate.impact5 },
   ];
 
   const handleDonate = (e: React.FormEvent) => {
     e.preventDefault();
-    const amount = customAmount || selectedAmount;
     toast({
-      title: t('donate.thankYou'),
-      description: t('donate.thankYouDesc'),
+      title: t.donate.thankYou,
+      description: t.donate.thankYouDesc,
     });
   };
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('donate.badge')}
-        title={t('donate.title')}
-        titleHighlight={t('donate.titleHighlight')}
-        titleEnd={t('donate.titleEnd')}
-        subtitle={t('donate.subtitle')}
+        badge={t.donate.badge}
+        title={t.donate.title}
+        titleHighlight={t.donate.titleHighlight}
+        titleEnd={t.donate.titleEnd}
+        subtitle={t.donate.subtitle}
         backgroundImage={heroDonateImage}
       />
 
-      {/* Donation Form */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Form */}
             <ScrollReveal animation="fade-right">
               <div className="card-elevated p-8 md:p-12">
                 <div className="flex items-center gap-3 mb-8">
@@ -71,15 +67,14 @@ const DonatePage = () => {
                     <Heart className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h2 className="font-serif text-2xl font-bold text-foreground">{t('donate.formTitle')}</h2>
-                    <p className="text-muted-foreground text-sm">{t('donate.formSubtitle')}</p>
+                    <h2 className="font-serif text-2xl font-bold text-foreground">{t.donate.formTitle}</h2>
+                    <p className="text-muted-foreground text-sm">{t.donate.formSubtitle}</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleDonate} className="space-y-6">
-                  {/* Amount Selection */}
                   <div>
-                    <Label className="text-foreground font-medium mb-3 block">{t('donate.selectAmount')}</Label>
+                    <Label className="text-foreground font-medium mb-3 block">{t.donate.selectAmount}</Label>
                     <div className="grid grid-cols-3 gap-3 mb-4">
                       {donationAmounts.map((amount) => (
                         <button
@@ -101,7 +96,7 @@ const DonatePage = () => {
                     </div>
                     <Input
                       type="number"
-                      placeholder={t('donate.enterCustom')}
+                      placeholder={t.donate.enterCustom}
                       value={customAmount}
                       onChange={(e) => {
                         setCustomAmount(e.target.value);
@@ -111,9 +106,8 @@ const DonatePage = () => {
                     />
                   </div>
 
-                  {/* Payment Method */}
                   <div>
-                    <Label className="text-foreground font-medium mb-3 block">{t('donate.paymentMethod')}</Label>
+                    <Label className="text-foreground font-medium mb-3 block">{t.donate.paymentMethod}</Label>
                     <div className="grid grid-cols-2 gap-3">
                       {paymentMethods.map((method) => (
                         <button
@@ -136,10 +130,9 @@ const DonatePage = () => {
                     </div>
                   </div>
 
-                  {/* Donor Info */}
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="name">{t('donate.yourName')}</Label>
+                      <Label htmlFor="name">{t.donate.yourName}</Label>
                       <Input
                         id="name"
                         value={donorName}
@@ -150,7 +143,7 @@ const DonatePage = () => {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="email">{t('donate.email')}</Label>
+                        <Label htmlFor="email">{t.donate.email}</Label>
                         <Input
                           id="email"
                           type="email"
@@ -161,7 +154,7 @@ const DonatePage = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="phone">{t('donate.phone')}</Label>
+                        <Label htmlFor="phone">{t.donate.phone}</Label>
                         <Input
                           id="phone"
                           type="tel"
@@ -175,23 +168,22 @@ const DonatePage = () => {
                   </div>
 
                   <Button type="submit" variant="hero" size="xl" className="w-full">
-                    {t('donate.completeDonation')}
+                    {t.donate.completeDonation}
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </form>
               </div>
             </ScrollReveal>
 
-            {/* Impact Info */}
             <div className="space-y-8">
               <ScrollReveal animation="fade-left">
                 <div>
                   <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                    {t('donate.impactBadge')}
+                    {t.donate.impactBadge}
                   </span>
-                  <h2 className="heading-section text-foreground">{t('donate.impactTitle')}</h2>
+                  <h2 className="heading-section text-foreground">{t.donate.impactTitle}</h2>
                   <p className="text-muted-foreground">
-                    {t('donate.impactSubtitle')}
+                    {t.donate.impactSubtitle}
                   </p>
                 </div>
               </ScrollReveal>
@@ -212,14 +204,13 @@ const DonatePage = () => {
                 ))}
               </div>
 
-              {/* Transparency */}
               <ScrollReveal animation="fade-up" delay={400}>
                 <div className="card-elevated p-6 bg-primary/5 border-primary/20">
                   <h3 className="font-serif text-lg font-semibold text-foreground mb-4">
-                    {t('donate.transparencyTitle')}
+                    {t.donate.transparencyTitle}
                   </h3>
                   <ul className="space-y-3">
-                    {[t('donate.transparency1'), t('donate.transparency2'), t('donate.transparency3'), t('donate.transparency4')].map((item, i) => (
+                    {[t.donate.transparency1, t.donate.transparency2, t.donate.transparency3, t.donate.transparency4].map((item, i) => (
                       <li key={i} className="flex items-center gap-2 text-muted-foreground">
                         <CheckCircle className="w-4 h-4 text-primary" />
                         <span>{item}</span>
@@ -233,23 +224,22 @@ const DonatePage = () => {
         </div>
       </section>
 
-      {/* Other Ways */}
       <section className="section-padding bg-secondary">
         <ScrollReveal>
           <div className="container-custom text-center">
-            <h2 className="heading-section text-foreground mb-6">{t('donate.otherWays')}</h2>
+            <h2 className="heading-section text-foreground mb-6">{t.donate.otherWays}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              {t('donate.otherWaysText')}
+              {t.donate.otherWaysText}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/volunteer">
                 <Button variant="outline" size="lg">
-                  {t('donate.volunteerTime')}
+                  {t.donate.volunteerTime}
                 </Button>
               </Link>
               <Link to="/contact">
                 <Button variant="outline" size="lg">
-                  {t('donate.corporatePartnerships')}
+                  {t.donate.corporatePartnerships}
                 </Button>
               </Link>
             </div>

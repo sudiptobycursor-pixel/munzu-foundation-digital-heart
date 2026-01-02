@@ -69,26 +69,24 @@ const ProjectsPage = () => {
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('projects.badge')}
-        title={t('projects.title')}
-        titleHighlight={t('projects.titleHighlight')}
-        subtitle={t('projects.subtitle')}
+        badge={t.projects.badge}
+        title={t.projects.title}
+        titleHighlight={t.projects.titleHighlight}
+        subtitle={t.projects.subtitle}
         backgroundImage={heroProjectsImage}
       />
 
-      {/* Ongoing Projects */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                {t('projects.ongoingBadge')}
+                {t.projects.ongoingBadge}
               </span>
-              <h2 className="heading-section text-foreground">{t('projects.ongoingTitle')}</h2>
+              <h2 className="heading-section text-foreground">{t.projects.ongoingTitle}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('projects.ongoingSubtitle')}
+                {t.projects.ongoingSubtitle}
               </p>
             </div>
           </ScrollReveal>
@@ -133,7 +131,7 @@ const ProjectsPage = () => {
                     </div>
                     <Link to="/donate">
                       <Button variant="hero" className="w-full">
-                        {t('projects.supportProject')}
+                        {t.projects.supportProject}
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </Link>
@@ -145,17 +143,16 @@ const ProjectsPage = () => {
         </div>
       </section>
 
-      {/* Completed Projects */}
       <section className="section-padding bg-secondary">
         <div className="container-custom">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                {t('projects.completedBadge')}
+                {t.projects.completedBadge}
               </span>
-              <h2 className="heading-section text-foreground">{t('projects.completedTitle')}</h2>
+              <h2 className="heading-section text-foreground">{t.projects.completedTitle}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('projects.completedSubtitle')}
+                {t.projects.completedSubtitle}
               </p>
             </div>
           </ScrollReveal>
@@ -173,7 +170,7 @@ const ProjectsPage = () => {
                   <div className="p-6 flex flex-col justify-center">
                     <div className="flex items-center gap-2 text-primary mb-2">
                       <CheckCircle className="w-5 h-5" />
-                      <span className="text-sm font-medium">{t('projects.completed')}</span>
+                      <span className="text-sm font-medium">{t.projects.completed}</span>
                     </div>
                     <h3 className="font-serif text-lg font-semibold text-foreground mb-2">
                       {project.title}
@@ -197,17 +194,16 @@ const ProjectsPage = () => {
         </div>
       </section>
 
-      {/* Success Stories */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                {t('projects.testimonialsBadge')}
+                {t.projects.testimonialsBadge}
               </span>
-              <h2 className="heading-section text-foreground">{t('projects.testimonialsTitle')}</h2>
+              <h2 className="heading-section text-foreground">{t.projects.testimonialsTitle}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('projects.testimonialsSubtitle')}
+                {t.projects.testimonialsSubtitle}
               </p>
             </div>
           </ScrollReveal>
@@ -231,24 +227,23 @@ const ProjectsPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="section-padding bg-primary">
         <ScrollReveal>
           <div className="container-custom text-center text-primary-foreground">
-            <h2 className="heading-section mb-6">{t('projects.bePartTitle')}</h2>
+            <h2 className="heading-section mb-6">{t.projects.bePartTitle}</h2>
             <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-              {t('projects.bePartText')}
+              {t.projects.bePartText}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/donate">
                 <Button variant="gold" size="xl">
-                  {t('nav.donateNow')}
+                  {t.nav.donateNow}
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/volunteer">
                 <Button variant="heroOutline" size="xl">
-                  {t('projects.volunteerWithUs')}
+                  {t.projects.volunteerWithUs}
                 </Button>
               </Link>
             </div>
