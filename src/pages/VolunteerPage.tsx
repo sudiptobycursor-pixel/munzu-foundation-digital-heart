@@ -6,24 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Users, Heart, Briefcase, GraduationCap, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
-const volunteerRoles = [
-  { icon: GraduationCap, title: "Teaching", description: "Share your knowledge with underprivileged children" },
-  { icon: Heart, title: "Healthcare", description: "Support our medical camps and health programs" },
-  { icon: Briefcase, title: "Professional Skills", description: "Offer legal, financial, or technical expertise" },
-  { icon: Users, title: "Community Outreach", description: "Help with events, campaigns, and awareness" },
-];
-
-const benefits = [
-  "Make a real difference in people's lives",
-  "Gain valuable experience and skills",
-  "Connect with like-minded individuals",
-  "Receive training and support",
-  "Get a certificate of appreciation",
-  "Be part of a meaningful community",
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import { ScrollReveal } from "@/hooks/useScrollReveal";
+import PageHero from "@/components/PageHero";
+import heroVolunteerImage from "@/assets/hero-volunteer.jpg";
 
 const VolunteerPage = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,11 +24,27 @@ const VolunteerPage = () => {
   });
   const { toast } = useToast();
 
+  const volunteerRoles = [
+    { icon: GraduationCap, title: t('volunteer.teaching'), description: t('volunteer.teachingDesc') },
+    { icon: Heart, title: t('volunteer.healthcare'), description: t('volunteer.healthcareDesc') },
+    { icon: Briefcase, title: t('volunteer.professionalSkills'), description: t('volunteer.professionalSkillsDesc') },
+    { icon: Users, title: t('volunteer.communityOutreach'), description: t('volunteer.communityOutreachDesc') },
+  ];
+
+  const benefits = [
+    t('volunteer.benefit1'),
+    t('volunteer.benefit2'),
+    t('volunteer.benefit3'),
+    t('volunteer.benefit4'),
+    t('volunteer.benefit5'),
+    t('volunteer.benefit6'),
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Application Submitted! 🎉",
-      description: "Thank you for your interest in volunteering. Our team will contact you within 48 hours.",
+      title: t('volunteer.applicationSubmitted'),
+      description: t('volunteer.applicationSubmittedDesc'),
     });
     setFormData({
       name: "",
@@ -58,58 +63,53 @@ const VolunteerPage = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-        </div>
-        <div className="container-custom relative z-10 text-center text-primary-foreground">
-          <span className="inline-block px-4 py-2 bg-white/10 rounded-full text-sm font-medium mb-4 animate-fade-in-down">
-            Join Our Team
-          </span>
-          <h1 className="heading-display mb-6 animate-fade-in-up">
-            Become a <span className="text-accent">Volunteer</span>
-          </h1>
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in-up delay-100">
-            Your time and skills can transform lives. Join our community of dedicated volunteers making a difference.
-          </p>
-        </div>
-      </section>
+      {/* Hero with Background Image */}
+      <PageHero
+        badge={t('volunteer.badge')}
+        title={t('volunteer.title')}
+        titleHighlight={t('volunteer.titleHighlight')}
+        subtitle={t('volunteer.subtitle')}
+        backgroundImage={heroVolunteerImage}
+      />
 
       {/* Why Volunteer */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                Why Volunteer?
-              </span>
-              <h2 className="heading-section text-foreground">
-                Make a Difference That Matters
-              </h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                Volunteering with Munzu Foundation is more than just giving your time – it's about being part of a movement that creates lasting change. Whether you have a few hours a week or can commit to regular service, we have a place for you.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-foreground">{benefit}</span>
-                  </div>
-                ))}
+            <ScrollReveal animation="fade-right">
+              <div>
+                <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
+                  {t('volunteer.whyBadge')}
+                </span>
+                <h2 className="heading-section text-foreground">
+                  {t('volunteer.whyTitle')}
+                </h2>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  {t('volunteer.whyText')}
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                      <span className="text-foreground">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
             <div className="grid sm:grid-cols-2 gap-6">
               {volunteerRoles.map((role, index) => (
-                <div key={index} className="card-elevated p-6 text-center group">
-                  <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                    <role.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                  <div className="card-elevated p-6 text-center group h-full">
+                    <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                      <role.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                    </div>
+                    <h4 className="font-serif text-lg font-semibold text-foreground mb-2">
+                      {role.title}
+                    </h4>
+                    <p className="text-muted-foreground text-sm">{role.description}</p>
                   </div>
-                  <h4 className="font-serif text-lg font-semibold text-foreground mb-2">
-                    {role.title}
-                  </h4>
-                  <p className="text-muted-foreground text-sm">{role.description}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -120,133 +120,139 @@ const VolunteerPage = () => {
       <section className="section-padding bg-secondary">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                Register Now
-              </span>
-              <h2 className="heading-section text-foreground">Volunteer Application Form</h2>
-              <p className="text-muted-foreground">
-                Fill out the form below and our team will get in touch with you.
-              </p>
-            </div>
+            <ScrollReveal>
+              <div className="text-center mb-12">
+                <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
+                  {t('volunteer.formBadge')}
+                </span>
+                <h2 className="heading-section text-foreground">{t('volunteer.formTitle')}</h2>
+                <p className="text-muted-foreground">
+                  {t('volunteer.formSubtitle')}
+                </p>
+              </div>
+            </ScrollReveal>
 
-            <form onSubmit={handleSubmit} className="card-elevated p-8 md:p-12 space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
+            <ScrollReveal animation="fade-up" delay={200}>
+              <form onSubmit={handleSubmit} className="card-elevated p-8 md:p-12 space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="name">{t('volunteer.fullName')} *</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">{t('contact.email')} *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="phone">{t('contact.phone')} *</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+880 1XXX-XXXXXX"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="occupation">{t('volunteer.occupation')}</Label>
+                    <Input
+                      id="occupation"
+                      name="occupation"
+                      value={formData.occupation}
+                      onChange={handleChange}
+                      placeholder="Student, Professional, etc."
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <Label htmlFor="name">Full Name *</Label>
+                  <Label htmlFor="skills">{t('volunteer.skillsExpertise')}</Label>
                   <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="skills"
+                    name="skills"
+                    value={formData.skills}
                     onChange={handleChange}
-                    placeholder="Enter your full name"
+                    placeholder="Teaching, Healthcare, IT, Languages, etc."
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="availability">{t('volunteer.availability')} *</Label>
+                  <select
+                    id="availability"
+                    name="availability"
+                    value={formData.availability}
+                    onChange={handleChange}
+                    className="w-full h-10 px-3 py-2 bg-background border border-input rounded-md text-foreground"
+                    required
+                  >
+                    <option value="">{t('volunteer.selectAvailability')}</option>
+                    <option value="weekdays">{t('volunteer.weekdays')}</option>
+                    <option value="weekends">{t('volunteer.weekends')}</option>
+                    <option value="both">{t('volunteer.both')}</option>
+                    <option value="flexible">{t('volunteer.flexible')}</option>
+                  </select>
+                </div>
+
+                <div>
+                  <Label htmlFor="motivation">{t('volunteer.motivation')} *</Label>
+                  <Textarea
+                    id="motivation"
+                    name="motivation"
+                    value={formData.motivation}
+                    onChange={handleChange}
+                    placeholder={t('volunteer.motivationPlaceholder')}
+                    rows={4}
                     required
                   />
                 </div>
-                <div>
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    required
-                  />
-                </div>
-              </div>
 
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <Label htmlFor="phone">Phone *</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+880 1XXX-XXXXXX"
-                    required
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="occupation">Occupation</Label>
-                  <Input
-                    id="occupation"
-                    name="occupation"
-                    value={formData.occupation}
-                    onChange={handleChange}
-                    placeholder="Student, Professional, etc."
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="skills">Skills & Expertise</Label>
-                <Input
-                  id="skills"
-                  name="skills"
-                  value={formData.skills}
-                  onChange={handleChange}
-                  placeholder="Teaching, Healthcare, IT, Languages, etc."
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="availability">Availability *</Label>
-                <select
-                  id="availability"
-                  name="availability"
-                  value={formData.availability}
-                  onChange={handleChange}
-                  className="w-full h-10 px-3 py-2 bg-background border border-input rounded-md text-foreground"
-                  required
-                >
-                  <option value="">Select your availability</option>
-                  <option value="weekdays">Weekdays (Mon-Fri)</option>
-                  <option value="weekends">Weekends (Sat-Sun)</option>
-                  <option value="both">Both weekdays and weekends</option>
-                  <option value="flexible">Flexible</option>
-                </select>
-              </div>
-
-              <div>
-                <Label htmlFor="motivation">Why do you want to volunteer? *</Label>
-                <Textarea
-                  id="motivation"
-                  name="motivation"
-                  value={formData.motivation}
-                  onChange={handleChange}
-                  placeholder="Tell us what motivates you to volunteer with Munzu Foundation..."
-                  rows={4}
-                  required
-                />
-              </div>
-
-              <Button type="submit" variant="hero" size="xl" className="w-full">
-                Submit Application
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </form>
+                <Button type="submit" variant="hero" size="xl" className="w-full">
+                  {t('volunteer.submitApplication')}
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </form>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="section-padding bg-primary">
-        <div className="container-custom text-center text-primary-foreground">
-          <h2 className="heading-section mb-6">Can't Volunteer? You Can Still Help!</h2>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-            If your schedule doesn't allow for volunteering, consider making a donation. Every contribution counts!
-          </p>
-          <Button variant="gold" size="xl" asChild>
-            <a href="/donate">
-              Make a Donation
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </Button>
-        </div>
+        <ScrollReveal>
+          <div className="container-custom text-center text-primary-foreground">
+            <h2 className="heading-section mb-6">{t('volunteer.cantVolunteer')}</h2>
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
+              {t('volunteer.cantVolunteerText')}
+            </p>
+            <Button variant="gold" size="xl" asChild>
+              <a href="/donate">
+                {t('nav.donateNow')}
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
+          </div>
+        </ScrollReveal>
       </section>
     </Layout>
   );
