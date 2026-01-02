@@ -12,62 +12,60 @@ const AboutPage = () => {
   const { t } = useLanguage();
 
   const values = [
-    { icon: Heart, title: t('about.compassion'), description: t('about.compassionDesc') },
-    { icon: Target, title: t('about.impactValue'), description: t('about.impactDesc') },
-    { icon: Users, title: t('about.community'), description: t('about.communityDesc') },
-    { icon: Award, title: t('about.integrity'), description: t('about.integrityDesc') },
+    { icon: Heart, title: t.about.compassion, description: t.about.compassionDesc },
+    { icon: Target, title: t.about.impactValue, description: t.about.impactDesc },
+    { icon: Users, title: t.about.community, description: t.about.communityDesc },
+    { icon: Award, title: t.about.integrity, description: t.about.integrityDesc },
   ];
 
   const team = [
-    { name: "Mohammad Rahman", role: t('about.founderTitle'), image: founderImage },
+    { name: "Mohammad Rahman", role: t.about.founderTitle, image: founderImage },
     { name: "Fatima Ahmed", role: "Program Director", image: founderImage },
     { name: "Kamal Hossain", role: "Operations Head", image: founderImage },
     { name: "Nasreen Begum", role: "Community Lead", image: founderImage },
   ];
 
   const goals = [
-    t('about.goal1'),
-    t('about.goal2'),
-    t('about.goal3'),
-    t('about.goal4'),
-    t('about.goal5'),
+    t.about.goal1,
+    t.about.goal2,
+    t.about.goal3,
+    t.about.goal4,
+    t.about.goal5,
   ];
 
   return (
     <Layout>
-      {/* Hero with Background Image */}
       <PageHero
-        badge={t('about.badge')}
-        title={t('about.title')}
-        titleHighlight={t('about.titleHighlight')}
-        subtitle={t('about.subtitle')}
+        badge={t.about.badge}
+        title={t.about.title}
+        titleHighlight={t.about.titleHighlight}
+        subtitle={t.about.subtitle}
         backgroundImage={heroAboutImage}
       />
 
-      {/* Story Section */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="fade-right">
               <div className="space-y-6">
                 <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium">
-                  {t('about.beginningBadge')}
+                  {t.about.beginningBadge}
                 </span>
                 <h2 className="heading-section text-foreground">
-                  {t('about.beginningTitle')}
+                  {t.about.beginningTitle}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('about.beginningText1')}
+                  {t.about.beginningText1}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('about.beginningText2')}
+                  {t.about.beginningText2}
                 </p>
                 <div className="flex gap-4">
                   <Link to="/projects">
-                    <Button size="lg">{t('about.viewProjects')}</Button>
+                    <Button size="lg">{t.about.viewProjects}</Button>
                   </Link>
                   <Link to="/volunteer">
-                    <Button variant="outline" size="lg">{t('about.joinTeam')}</Button>
+                    <Button variant="outline" size="lg">{t.about.joinTeam}</Button>
                   </Link>
                 </div>
               </div>
@@ -83,13 +81,13 @@ const AboutPage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
                     <p className="font-serif text-xl font-semibold">Mohammad Rahman</p>
-                    <p className="text-white/80">{t('about.founderTitle')}</p>
+                    <p className="text-white/80">{t.about.founderTitle}</p>
                   </div>
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent rounded-2xl flex items-center justify-center animate-float shadow-xl">
                   <div className="text-center">
                     <p className="text-2xl font-bold text-foreground">9+</p>
-                    <p className="text-xs text-foreground/80">{t('about.years')}</p>
+                    <p className="text-xs text-foreground/80">{t.about.years}</p>
                   </div>
                 </div>
               </div>
@@ -98,7 +96,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Vision & Mission */}
       <section className="section-padding bg-secondary">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8">
@@ -107,9 +104,9 @@ const AboutPage = () => {
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                   <Eye className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold mb-4 text-foreground">{t('about.visionTitle')}</h3>
+                <h3 className="font-serif text-2xl font-bold mb-4 text-foreground">{t.about.visionTitle}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('about.visionText')}
+                  {t.about.visionText}
                 </p>
               </div>
             </ScrollReveal>
@@ -118,9 +115,9 @@ const AboutPage = () => {
                 <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
                   <Target className="w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold mb-4">{t('about.missionTitle')}</h3>
+                <h3 className="font-serif text-2xl font-bold mb-4">{t.about.missionTitle}</h3>
                 <p className="text-primary-foreground/80 leading-relaxed">
-                  {t('about.missionText')}
+                  {t.about.missionText}
                 </p>
               </div>
             </ScrollReveal>
@@ -128,17 +125,16 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Values */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                {t('about.valuesBadge')}
+                {t.about.valuesBadge}
               </span>
-              <h2 className="heading-section text-foreground">{t('about.valuesTitle')}</h2>
+              <h2 className="heading-section text-foreground">{t.about.valuesTitle}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('about.valuesSubtitle')}
+                {t.about.valuesSubtitle}
               </p>
             </div>
           </ScrollReveal>
@@ -160,17 +156,16 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Team */}
       <section className="section-padding bg-secondary">
         <div className="container-custom">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                {t('about.teamBadge')}
+                {t.about.teamBadge}
               </span>
-              <h2 className="heading-section text-foreground">{t('about.teamTitle')}</h2>
+              <h2 className="heading-section text-foreground">{t.about.teamTitle}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('about.teamSubtitle')}
+                {t.about.teamSubtitle}
               </p>
             </div>
           </ScrollReveal>
@@ -199,16 +194,15 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Goals */}
       <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-12">
                 <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
-                  {t('about.goalsBadge')}
+                  {t.about.goalsBadge}
                 </span>
-                <h2 className="heading-section text-foreground">{t('about.goalsTitle')}</h2>
+                <h2 className="heading-section text-foreground">{t.about.goalsTitle}</h2>
               </div>
             </ScrollReveal>
             <div className="space-y-6">
